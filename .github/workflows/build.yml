@@ -17,7 +17,7 @@ jobs:
 
       - name: Unzip project
         run: |
-          unzip -o my_energy_android_source.zip.ZIP -d project
+          unzip -o my_energy_android_source.zip -d project
 
       - name: Get dependencies
         run: flutter pub get
