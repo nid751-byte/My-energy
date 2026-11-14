@@ -15,12 +15,18 @@ jobs:
         with:
           flutter-version: '3.24.5'
 
-      - name: Unzip project
+      - name: Unzip Android source
+        run: unzip -o my_energy_android_source.zip -d project
+
+      - name: Generate Android project and build APK
         run: |
-          unzip -o my_energy_android_source.zip -d project
+          cd project/my_energy_android_source
+          flutter create --platforms=android .
+          flutter pub get
+          flutter build apk --release
 
-      - name: Get dependencies
-        run: flutter pub get
-
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-energy-apk
+          path: project/my_energy_android_source/build/app/outputs/flutter-apk/app-release.apk
