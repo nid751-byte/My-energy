@@ -11,9 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.24.5'
+     - uses: actions/setup-java@v4
+  with:
+    distribution: temurin
+    java-version: '17'
 
       - name: Unzip Android source
         run: unzip -o my_energy_android_source.zip -d project
